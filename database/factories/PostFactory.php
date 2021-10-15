@@ -22,11 +22,11 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->title();
+        $title = $this->faker->realText($maxNbChars = 10, $indexSize = 2);
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'body' => $this->faker->text,
+            'body' => $this->faker->text(),
             'image' => $this->faker->imageUrl(640, 480),
 
         ];

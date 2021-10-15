@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class homeController extends Controller
@@ -9,25 +10,29 @@ class homeController extends Controller
     public function index()
     {
 
-        $posts = [
-            [
-                'id' => 1,
-                'title' => 'post 1',
-                'body' => 'post body 1'
-            ],
-            [
-                'id' => 2,
-                'title' => 'post 2',
-                'body' => 'post body 2'
-            ],
-            [
-                'id' => 3,
-                'title' => 'post 3',
-                'body' => 'post body 3'
-            ]
-        ];
+        $posts = Post::paginate(6);
+
         return view('home')->with([
             'posts' => $posts
         ]);
+    }
+
+    public function show($slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+
+        return view('show')->with([
+            'post' => $post
+        ]);
+    }
+
+    public function create()
+    {
+        return view('create');
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }
