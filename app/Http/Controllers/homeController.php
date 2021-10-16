@@ -46,5 +46,8 @@ class homeController extends Controller
         $post->body = $request->body;
         $post->image = "https://via.placeholder.com/640x480.png/0011ff?text=sequi";
         $post->save();
+        return redirect()->route('home')->with([
+            'success' => 'article ajoute'
+        ]);
     }
 }

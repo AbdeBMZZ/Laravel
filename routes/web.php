@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'homeController@index');
+Route::get('/', 'homeController@index')->name('home');
 
 Route::get('/post/{id}', 'homeController@show')->name('post.show');
 Route::get('/create/post', 'homeController@create')->name('post.create');
 Route::post('/add/post', 'homeController@store')->name('post.store');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
