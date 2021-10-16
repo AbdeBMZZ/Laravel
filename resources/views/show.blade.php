@@ -13,6 +13,7 @@
                         <img src="{{ asset($post->image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
+                            <h6 class="card-title">{{ $post->user ? $post->user->name : null }}</h6>
                             <p class="card-text">{{ $post->body }}</p>
                         </div>
                     </div>

@@ -22,5 +22,5 @@ Route::get('/create/post', 'homeController@create')->name('post.create');
 Route::post('/add/post', 'homeController@store')->name('post.store');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return redirect('/');
 })->name('dashboard');

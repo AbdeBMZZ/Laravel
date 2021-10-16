@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -45,6 +46,7 @@ class homeController extends Controller
         $post->slug = Str::slug($request->title);
         $post->body = $request->body;
         $post->image = "https://via.placeholder.com/640x480.png/0011ff?text=sequi";
+        $post->user_id = auth()->user()->id;
         $post->save();
         return redirect()->route('home')->with([
             'success' => 'article ajoute'
